@@ -7,8 +7,8 @@ export default function Color({ color, role, contrast }) {
       style={{ backgroundColor: color, color: contrast }}
     >
       <h2 className="color-card-headline">{color}</h2>
-      <h3>{role}</h3>
-      <p>Contrast: {contrast}</p>
+      <h3 style={{color: contrast}}>{role}</h3>
+      <p style={{color: contrast}}>Contrast: {contrast}</p>
     </div>
   );
 }

@@ -11,7 +11,7 @@ function App() {
             key={color.id}
             color={color.hex}
             role={color.role}
-            contrastText={color.contrastText}
+            contrast={color.contrastText}
           />
         );
       })}
