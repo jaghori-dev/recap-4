@@ -5,8 +5,16 @@ import "./App.css";
 function App() {
   return (
     <>
-      <h1>Theme Creator</h1>
-      // display colors here
+      {initialColors.map((color) => {
+        return (
+          <Color
+            key={color.id}
+            color={color.hex}
+            role={color.role}
+            contrastText={color.contrastText}
+          />
+        );
+      })}
     </>
   );
 }
