@@ -1,22 +1,34 @@
-import { useState } from "react";
-export default function ColorInput({ id, defaultValue, handleValue }) {
+import { useState, useEffect } from "react";
+export default function ColorInput({
+  id,
+  name = id,
+  defaultValue,
+  handleValue,
+}) {
   const [inputValue, setInputValue] = useState(defaultValue);
+  useEffect(() => {
+    setInputValue(defaultValue);
+  }, [defaultValue]);
   function handleInputValue(event) {
-    setInputValue(event.target.value);
-    handleValue(event.target);
+    const { value } = event.target;
+    setInputValue(value);
+    if (handleValue) {
+      handleValue({ name, value });
+    }
   }
   return (
     <>
       <input
         type="text"
         id={id}
-        name={id}
+        name={name}
         value={inputValue}
         onChange={handleInputValue}
       />
       <input
         type="color"
-        name={id}
+        id={id}
+        name={name}
         value={inputValue}
         onChange={handleInputValue}
       />

@@ -36,8 +36,8 @@ export default function ColorForm({
         <br />
         <input
           type="text"
-          id="role"
           name="role"
+          id="role"
           defaultValue={initialData.role}
         />
       </label>
