@@ -1,5 +1,5 @@
 import { initialColors } from "./lib/colors";
-import Color from "./Components/Color/ColorCard";
+import ColorCard from "./Components/Color/ColorCard";
 import "./App.css";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import { useState } from "react";
@@ -9,6 +9,21 @@ function App() {
   const [data, setData] = useState(initialColors);
   function onSubmitColor(input) {
     setData([{ id: uid(2), ...input }, ...data]);
+  }
+  function handleEdit(id, updatedData) {
+    console.log(id, updatedData);
+    setData((prevData) =>
+      prevData.map((card) =>
+        card.id === id
+          ? {
+              ...card,
+              role: updatedData.rolle,
+              hex: updatedData.color,
+              contrastText: updatedData.contrast,
+            }
+          : card,
+      ),
+    );
   }
   function deleteCard(id) {
     const newData = data.filter((card) => card.id !== id);
@@ -20,12 +35,14 @@ function App() {
       <ColorForm onSubmitColor={onSubmitColor} />
       {data.map((color) => {
         return (
-          <Color
+          <ColorCard
             key={color.id}
+            id={color.id}
             color={color.hex}
             role={color.role}
             contrast={color.contrastText}
             handleDelete={() => deleteCard(color.id)}
+            handleEdit={handleEdit}
           />
         );
       })}
