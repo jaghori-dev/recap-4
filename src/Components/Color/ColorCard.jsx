@@ -8,7 +8,7 @@ export default function Color({ color, role, contrast, handleDelete }) {
     setIsConfirmVisible((prev) => !prev);
   }
   return (
-    <div
+     <div
       className="color-card"
       style={{ backgroundColor: color, color: contrast }}
     >
@@ -16,11 +16,11 @@ export default function Color({ color, role, contrast, handleDelete }) {
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
       <div className="color-card-buttons">
-        <p className="" style={{ display: isHidde }}>Do you want to delete it?</p>
-        <button onClick={toggleShow}>{content}</button>
-        <button onClick={handleDelete} style={{ display: isHidde }}>
-          Delete
+        {isConfirmVisible && <p>Do you want to delete it?</p>}
+        <button onClick={toggleShow}>
+          {isConfirmVisible ? "Cancel" : "Delete"}
         </button>
+        {isConfirmVisible && <button onClick={handleDelete}>Delete</button>}
       </div>
     </div>
   );
