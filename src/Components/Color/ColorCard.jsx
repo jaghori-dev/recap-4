@@ -3,7 +3,6 @@ import { useState } from "react";
 
 export default function Color({ color, role, contrast, handleDelete }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-
   function toggleShow() {
     setIsConfirmVisible((prev) => !prev);
   }
