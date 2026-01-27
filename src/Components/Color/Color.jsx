@@ -2,11 +2,10 @@ import "./Color.css";
 import { useState } from "react";
 
 export default function Color({ color, role, contrast, handleDelete }) {
-  const [isHidde, setIsHidde] = useState("none");
-  const [content, setContent] = useState("delete");
+  const [isConfirmVisible, setIsConfirmVisible] = useState(false);
+
   function toggleShow() {
-    setIsHidde(isHidde === "none" ? "flex" : "none");
-    setContent(content === "delete" ? "cancel" : "delete");
+    setIsConfirmVisible((prev) => !prev);
   }
   return (
     <div
