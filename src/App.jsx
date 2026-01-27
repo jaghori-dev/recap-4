@@ -2,11 +2,11 @@ import { initialColors } from "./lib/colors";
 import ColorCard from "./Components/Color/ColorCard";
 import "./App.css";
 import ColorForm from "./Components/ColorForm/ColorForm";
-import { useState } from "react";
 import { uid } from "uid";
+import {useLocalStorage } from "@uidotdev/usehooks";
 
 function App() {
-  const [data, setData] = useState(initialColors);
+  const [data, setData] = useLocalStorage("localData", initialColors);
   function onSubmitColor(input) {
     setData([{ id: uid(2), ...input }, ...data]);
   }
