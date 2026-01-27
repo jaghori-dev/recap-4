@@ -1,5 +1,5 @@
 import { useState } from "react";
-import ColorInput from "../../ColorInput";
+import ColorInput from "../ColorInput";
 import "./ColorForm.css";
 
 export default function ColorForm({
