@@ -1,8 +1,7 @@
 import "./ColorCard.css";
 import { useState } from "react";
-import ColorInput from "../ColorInput";
 import CopyToClipboard from "../CopyToClipboard";
-import EditForm from "../EditForm";
+import Form from "../Form";
 
 export default function Color({
   color,
@@ -14,6 +13,7 @@ export default function Color({
 }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [isConfirmEdit, setIsConfirmEdit] = useState(false);
+  
   function toggleShow() {
     setIsConfirmVisible((prev) => !prev);
   }
@@ -34,11 +34,17 @@ export default function Color({
       style={{ backgroundColor: color, color: contrast }}
     >
       <h2 className="color-card-headline">{color}</h2>
-      <CopyToClipboard colorCode={color} color={color}/>
+      <CopyToClipboard colorCode={color} color={color} />
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
       {isConfirmEdit && (
-        <EditForm role={role} color={color} contrast={contrast} onSubmit={submitForm} />
+        <Form
+          role={role}
+          color={color}
+          contrast={contrast}
+          onSubmit={submitForm}
+          btnText="Save"
+        />
       )}
 
       <div className="color-card-buttons">
