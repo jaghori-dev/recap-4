@@ -42,10 +42,8 @@ function App() {
             role={color.role}
             contrast={color.contrastText}
             handleDelete={() => deleteCard(color.id)}
-            handleEdit={handleEdit}
-            
-          /> 
-          
+            handleEdit={handleEdit}            
+          />          
         );
       })}
     </>

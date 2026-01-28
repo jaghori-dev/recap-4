@@ -12,20 +12,20 @@ export default function Color({
   id,
 }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-  const [isConfirmEdit, setIsConfirmEdit] = useState(false);
-  
+  const [isEditVisible, setIsEditVisible] = useState(false);
+
   function toggleShow() {
     setIsConfirmVisible((prev) => !prev);
   }
   function handleCofirmEdit() {
-    setIsConfirmEdit((prev) => !prev);
+    setIsEditVisible((prev) => !prev);
   }
   function submitForm(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     handleEdit(id, data);
-    setIsConfirmEdit(false);
+    setIsEditVisible(false);
   }
 
   return (
@@ -37,7 +37,7 @@ export default function Color({
       <CopyToClipboard colorCode={color} color={color} />
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
-      {isConfirmEdit && (
+      {isEditVisible && (
         <Form
           role={role}
           color={color}
@@ -49,7 +49,7 @@ export default function Color({
 
       <div className="color-card-buttons">
         {isConfirmVisible && <p>Do you want to delete it?</p>}
-        {!isConfirmEdit && (
+        {!isEditVisible && (
           <button onClick={toggleShow}>
             {isConfirmVisible ? "Cancel" : "Delete"}
           </button>
@@ -57,7 +57,7 @@ export default function Color({
 
         {!isConfirmVisible && (
           <button onClick={handleCofirmEdit}>
-            {isConfirmEdit ? "Cancel" : "Edit"}
+            {isEditVisible ? "Cancel" : "Edit"}
           </button>
         )}
         {isConfirmVisible && <button onClick={handleDelete}>Confirm</button>}
