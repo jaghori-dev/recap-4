@@ -4,6 +4,7 @@ import "./App.css";
 import ColorForm from "./Components/ColorForm/ColorForm";
 import { uid } from "uid";
 import {useLocalStorage } from "@uidotdev/usehooks";
+import CopyToClipboard from "./Components/CopyToClipboard";
 
 function App() {
   const [data, setData] = useLocalStorage("localData", initialColors);
@@ -43,7 +44,9 @@ function App() {
             contrast={color.contrastText}
             handleDelete={() => deleteCard(color.id)}
             handleEdit={handleEdit}
-          />
+            
+          /> 
+          
         );
       })}
     </>

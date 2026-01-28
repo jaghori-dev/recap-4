@@ -1,6 +1,7 @@
 import "./ColorCard.css";
 import { useState } from "react";
 import ColorInput from "../ColorInput";
+import CopyToClipboard from "../CopyToClipboard";
 
 export default function Color({
   color,
@@ -23,7 +24,7 @@ export default function Color({
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     handleEdit(id, data);
-    setIsConfirmEdit(false)
+    setIsConfirmEdit(false);
   }
 
   return (
@@ -32,6 +33,7 @@ export default function Color({
       style={{ backgroundColor: color, color: contrast }}
     >
       <h2 className="color-card-headline">{color}</h2>
+      <CopyToClipboard colorCode={color} />
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
       {isConfirmEdit && (
@@ -42,7 +44,8 @@ export default function Color({
           </label>
           <br />
           <label htmlFor="color">
-            Hex: <br /> <ColorInput id="color" name='color' defaultValue={color} />{" "}
+            Hex: <br />{" "}
+            <ColorInput id="color" name="color" defaultValue={color} />{" "}
           </label>
           <br />
           <label htmlFor="contrast">
@@ -67,7 +70,6 @@ export default function Color({
             {isConfirmEdit ? "Cancel" : "Edit"}
           </button>
         )}
-
         {isConfirmVisible && <button onClick={handleDelete}>Confirm</button>}
       </div>
     </div>
