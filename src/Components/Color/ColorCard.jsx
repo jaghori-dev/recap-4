@@ -2,6 +2,7 @@ import "./ColorCard.css";
 import { useState } from "react";
 import ColorInput from "../ColorInput";
 import CopyToClipboard from "../CopyToClipboard";
+import EditForm from "../EditForm";
 
 export default function Color({
   color,
@@ -37,24 +38,7 @@ export default function Color({
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
       {isConfirmEdit && (
-        <form action="" onSubmit={submitForm} className="edit-form">
-          <label htmlFor="rolle">
-            Role: <br />
-            <input type="text" id="rolle" name="rolle" defaultValue={role} />
-          </label>
-          <br />
-          <label htmlFor="color">
-            Hex: <br />{" "}
-            <ColorInput id="color" name="color" defaultValue={color} />{" "}
-          </label>
-          <br />
-          <label htmlFor="contrast">
-            Contrast:
-            <br /> <ColorInput id="contrast" defaultValue={contrast} />{" "}
-          </label>
-          <br />
-          <button type="submit">Save</button>
-        </form>
+        <EditForm role={role} color={color} contrast={contrast} onSubmit={submitForm} />
       )}
 
       <div className="color-card-buttons">
