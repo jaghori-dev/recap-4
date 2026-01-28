@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "@octokit/rest": "^20.1.0",
+    "@tailwindcss/vite": "^4.1.18",
     "@uidotdev/usehooks": "^2.4.1",
     "dotenv": "^16.4.5",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
+    "tailwindcss": "^4.1.18",
     "uid": "^2.0.2"
   },
   "devDependencies": {

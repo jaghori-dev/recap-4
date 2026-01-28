@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import Button from "./Button";
 
 function CopyToClipboard({ colorCode, color }) {
   const [copied, setCopied] = useState(false);
@@ -20,7 +21,7 @@ function CopyToClipboard({ colorCode, color }) {
 
   return (
     <div>
-      <button onClick={handleCopy}>Copy Code</button>
+      {!copied && <Button onClick={handleCopy}>Copy Code</Button>}
 
       {copied && (
         <p style={{ color: { color } }}>Color Code copied successfully!</p>

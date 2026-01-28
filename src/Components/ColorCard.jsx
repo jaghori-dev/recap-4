@@ -1,7 +1,7 @@
-import "./ColorCard.css";
 import { useState } from "react";
-import CopyToClipboard from "../CopyToClipboard";
-import Form from "../Form";
+import CopyToClipboard from "./CopyToClipboard";
+import Form from "./Form";
+import Button from "./Button";
 
 export default function Color({
   color,
@@ -30,13 +30,19 @@ export default function Color({
 
   return (
     <div
-      className="color-card"
-      style={{ backgroundColor: color, color: contrast }}
+      style={{ "--bg": color, "--text": contrast }}
+      className="w-90 min-h-90 bg-[var(--bg)] text-[var(--text)] flex flex-col items-center p-3 rounded-xl"
     >
-      <h2 className="color-card-headline">{color}</h2>
-      <CopyToClipboard colorCode={color} color={color} />
-      <h3 style={{ color: contrast }}>{role}</h3>
-      <p style={{ color: contrast }}>Contrast: {contrast}</p>
+      <div className="flex">
+        <h2 className="text-2xl bg-[black] p-2 rounded-xl">{color}</h2>
+        <CopyToClipboard colorCode={color} color={color} />
+      </div>
+      <h3 className="text-xl py-1 px-2" style={{ color: contrast }}>
+        {role}
+      </h3>
+      <p className="text-xl py-1 px-2" style={{ color: contrast }}>
+        Contrast: {contrast}
+      </p>
       {isEditVisible && (
         <Form
           role={role}
@@ -47,20 +53,20 @@ export default function Color({
         />
       )}
 
-      <div className="color-card-buttons">
+      <div className="">
         {isConfirmVisible && <p>Do you want to delete it?</p>}
         {!isEditVisible && (
-          <button onClick={toggleShow}>
+          <Button onClick={toggleShow}>
             {isConfirmVisible ? "Cancel" : "Delete"}
-          </button>
+          </Button>
         )}
 
         {!isConfirmVisible && (
-          <button onClick={handleCofirmEdit}>
+          <Button onClick={handleCofirmEdit}>
             {isEditVisible ? "Cancel" : "Edit"}
-          </button>
+          </Button>
         )}
-        {isConfirmVisible && <button onClick={handleDelete}>Confirm</button>}
+        {isConfirmVisible && <Button onClick={handleDelete}>Confirm</Button>}
       </div>
     </div>
   );

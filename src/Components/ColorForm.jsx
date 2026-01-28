@@ -1,10 +1,9 @@
 import { useState } from "react";
-import "./ColorForm.css";
-import Form from "../Form";
+import Form from "./Form";
 
 export default function ColorForm({
   onSubmitColor,
-  initialData = { role: "some color", hex: "#123456", contrastText: "#ffffff" },
+  initialData = { role: "some color", hex: "#123456", contrastText: "#f5f4f4" },
 }) {
   const [color, setColor] = useState(initialData.hex);
   const [textColor, setTextColor] = useState(initialData.contrastText);
