@@ -33,7 +33,7 @@ export default function Color({
       style={{ backgroundColor: color, color: contrast }}
     >
       <h2 className="color-card-headline">{color}</h2>
-      <CopyToClipboard colorCode={color} />
+      <CopyToClipboard colorCode={color} color={color}/>
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
       {isConfirmEdit && (

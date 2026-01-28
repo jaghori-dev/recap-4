@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 
-function CopyToClipboard({ colorCode }) {
+function CopyToClipboard({ colorCode, color }) {
   const [copied, setCopied] = useState(false);
 
   const handleCopy = async () => {
@@ -11,15 +11,11 @@ function CopyToClipboard({ colorCode }) {
       console.error("Failed to copy:", err);
     }
   };
-
   useEffect(() => {
     if (!copied) return;
-
-    const timer = setTimeout(() => {
+    setTimeout(() => {
       setCopied(false);
     }, 3000);
-
-    return () => clearTimeout(timer);
   }, [copied]);
 
   return (
@@ -27,9 +23,7 @@ function CopyToClipboard({ colorCode }) {
       <button onClick={handleCopy}>Copy Code</button>
 
       {copied && (
-        <p style={{ color: "green", marginTop: "8px" }}>
-          Color Code copied successfully!
-        </p>
+        <p style={{ color: { color } }}>Color Code copied successfully!</p>
       )}
     </div>
   );
