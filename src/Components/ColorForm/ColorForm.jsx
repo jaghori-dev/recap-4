@@ -1,6 +1,6 @@
 import { useState } from "react";
-import ColorInput from "../ColorInput";
 import "./ColorForm.css";
+import Form from "../Form";
 
 export default function ColorForm({
   onSubmitColor,
@@ -26,43 +26,15 @@ export default function ColorForm({
   }
 
   return (
-    <form
-      className="color-form"
+    <Form
       onSubmit={handleSubmit}
-      style={{ backgroundColor: color, color: textColor }}
-    >
-      <label htmlFor="role">
-        Role
-        <br />
-        <input
-          type="text"
-          name="role"
-          id="role"
-          defaultValue={initialData.role}
-        />
-      </label>
-      <br />
-      <label htmlFor="hex">
-        Hex
-        <br />
-        <ColorInput
-          id="hex"
-          defaultValue={initialData.hex}
-          handleValue={handleValue}
-        />
-      </label>
-      <br />
-      <label htmlFor="contrastText">
-        Contrast Text
-        <br />
-        <ColorInput
-          id="contrastText"
-          defaultValue={initialData.contrastText}
-          handleValue={handleValue}
-        />
-      </label>
-      <br />
-      <button>ADD COLOR</button>
-    </form>
+      role={initialData.role}
+      color={initialData.hex}
+      contrast={initialData.contrastText}
+      btnText="ADD Color"
+      bgc={color}
+      txtColor={textColor}
+      handleValue={handleValue}
+    />
   );
 }

@@ -17,9 +17,9 @@ function App() {
         card.id === id
           ? {
               ...card,
-              role: updatedData.rolle,
-              hex: updatedData.color,
-              contrastText: updatedData.contrast,
+              role: updatedData.role,
+              hex: updatedData.hex,
+              contrastText: updatedData.contrastText,
             }
           : card,
       ),
@@ -42,10 +42,8 @@ function App() {
             role={color.role}
             contrast={color.contrastText}
             handleDelete={() => deleteCard(color.id)}
-            handleEdit={handleEdit}
-            
-          /> 
-          
+            handleEdit={handleEdit}            
+          />          
         );
       })}
     </>

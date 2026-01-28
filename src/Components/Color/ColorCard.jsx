@@ -1,7 +1,7 @@
 import "./ColorCard.css";
 import { useState } from "react";
-import ColorInput from "../ColorInput";
 import CopyToClipboard from "../CopyToClipboard";
+import Form from "../Form";
 
 export default function Color({
   color,
@@ -12,19 +12,20 @@ export default function Color({
   id,
 }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
-  const [isConfirmEdit, setIsConfirmEdit] = useState(false);
+  const [isEditVisible, setIsEditVisible] = useState(false);
+
   function toggleShow() {
     setIsConfirmVisible((prev) => !prev);
   }
   function handleCofirmEdit() {
-    setIsConfirmEdit((prev) => !prev);
+    setIsEditVisible((prev) => !prev);
   }
   function submitForm(event) {
     event.preventDefault();
     const formData = new FormData(event.target);
     const data = Object.fromEntries(formData);
     handleEdit(id, data);
-    setIsConfirmEdit(false);
+    setIsEditVisible(false);
   }
 
   return (
@@ -33,33 +34,22 @@ export default function Color({
       style={{ backgroundColor: color, color: contrast }}
     >
       <h2 className="color-card-headline">{color}</h2>
-      <CopyToClipboard colorCode={color} color={color}/>
+      <CopyToClipboard colorCode={color} color={color} />
       <h3 style={{ color: contrast }}>{role}</h3>
       <p style={{ color: contrast }}>Contrast: {contrast}</p>
-      {isConfirmEdit && (
-        <form action="" onSubmit={submitForm} className="edit-form">
-          <label htmlFor="rolle">
-            Role: <br />
-            <input type="text" id="rolle" name="rolle" defaultValue={role} />
-          </label>
-          <br />
-          <label htmlFor="color">
-            Hex: <br />{" "}
-            <ColorInput id="color" name="color" defaultValue={color} />{" "}
-          </label>
-          <br />
-          <label htmlFor="contrast">
-            Contrast:
-            <br /> <ColorInput id="contrast" defaultValue={contrast} />{" "}
-          </label>
-          <br />
-          <button type="submit">Save</button>
-        </form>
+      {isEditVisible && (
+        <Form
+          role={role}
+          color={color}
+          contrast={contrast}
+          onSubmit={submitForm}
+          btnText="Save"
+        />
       )}
 
       <div className="color-card-buttons">
         {isConfirmVisible && <p>Do you want to delete it?</p>}
-        {!isConfirmEdit && (
+        {!isEditVisible && (
           <button onClick={toggleShow}>
             {isConfirmVisible ? "Cancel" : "Delete"}
           </button>
@@ -67,7 +57,7 @@ export default function Color({
 
         {!isConfirmVisible && (
           <button onClick={handleCofirmEdit}>
-            {isConfirmEdit ? "Cancel" : "Edit"}
+            {isEditVisible ? "Cancel" : "Edit"}
           </button>
         )}
         {isConfirmVisible && <button onClick={handleDelete}>Confirm</button>}
