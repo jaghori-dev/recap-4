@@ -34,7 +34,7 @@ export default function Color({
       className="w-90 min-h-90 bg-[var(--bg)] text-[var(--text)] flex flex-col items-center p-3 rounded-xl"
     >
       <div className="flex">
-        <h2 className="text-2xl bg-[black] p-2 rounded-xl">{color}</h2>
+        <h2 className="text-2xl p-2 rounded-xl">{color}</h2>
         <CopyToClipboard colorCode={color} color={color} />
       </div>
       <h3 className="text-xl py-1 px-2" style={{ color: contrast }}>

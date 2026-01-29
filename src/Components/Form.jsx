@@ -13,7 +13,7 @@ export default function Form({
 }) {
   return (
     <form
-      className="w-90 py-1 flex flex-col justufy-center items-center rounded-xl "
+      className="w-90 py-1 flex flex-col justufy-center items-center rounded-xl"
       action=""
       onSubmit={onSubmit}
       style={{ backgroundColor: bgc, color: txtColor }}
