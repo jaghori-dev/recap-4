@@ -10,23 +10,13 @@ function App() {
     setData([{ id: uid(2), ...input }, ...data]);
   }
   function handleEdit(id, updatedData) {
-    console.log(id, updatedData);
+    // console.log(id, updatedData);
     setData((prevData) =>
-      prevData.map((card) =>
-        card.id === id
-          ? {
-              ...card,
-              role: updatedData.role,
-              hex: updatedData.hex,
-              contrastText: updatedData.contrastText,
-            }
-          : card,
-      ),
+      prevData.map((card) => (card.id === id ? {...card,updatedData} : card)),
     );
   }
   function deleteCard(id) {
-    const newData = data.filter((card) => card.id !== id);
-    setData(newData);
+    setData(data.filter((card) => card.id !== id));
   }
   return (
     <>
