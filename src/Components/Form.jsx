@@ -1,5 +1,5 @@
 import ColorInput from "./ColorInput";
-import "./Color/ColorCard.css";
+import Button from "./Button";
 
 export default function Form({
   role,
@@ -13,17 +13,23 @@ export default function Form({
 }) {
   return (
     <form
+      className="w-90 py-1 flex flex-col justufy-center items-center rounded-xl"
       action=""
       onSubmit={onSubmit}
-      className="color-form"
       style={{ backgroundColor: bgc, color: txtColor }}
     >
       <label htmlFor="role">
         Role: <br />
-        <input type="text" id="role" name="role" defaultValue={role} />
+        <input
+          type="text"
+          id="role"
+          name="role"
+          defaultValue={role}
+          className="w-60 h-11 p-2 text-lg bg-slate-400 rounded-xl"
+        />
       </label>
       <br />
-      <label htmlFor="hex">
+      <label htmlFor="hex" className="flex flex-col relative text-lg">
         Hex: <br />{" "}
         <ColorInput
           id="hex"
@@ -32,7 +38,7 @@ export default function Form({
         />{" "}
       </label>
       <br />
-      <label htmlFor="contrastText">
+      <label htmlFor="contrastText" className="flex flex-col relative text-lg">
         Contrast:
         <br />{" "}
         <ColorInput
@@ -42,7 +48,7 @@ export default function Form({
         />{" "}
       </label>
       <br />
-      <button type="submit">{btnText}</button>
+      <Button type="submit">{btnText}</Button>
     </form>
   );
 }
