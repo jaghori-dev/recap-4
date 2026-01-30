@@ -12,7 +12,7 @@ function App() {
   function handleEdit(id, updatedData) {
     // console.log(id, updatedData);
     setData((prevData) =>
-      prevData.map((card) => (card.id === id ? {...card,updatedData} : card)),
+      prevData.map((card) => (card.id === id ? {id,...updatedData} : card)),
     );
   }
   function deleteCard(id) {
