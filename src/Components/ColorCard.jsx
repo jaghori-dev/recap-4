@@ -10,6 +10,8 @@ export default function Color({
   handleDelete,
   handleEdit,
   id,
+  toggleFavorite,
+  isFavorite
 }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [isEditVisible, setIsEditVisible] = useState(false);
@@ -68,6 +70,7 @@ export default function Color({
         )}
         {isConfirmVisible && <Button onClick={handleDelete}>Confirm</Button>}
       </div>
+      <Button onClick={toggleFavorite}>{isFavorite? 'unbookmark' : 'bookmark'}</Button>
     </div>
   );
 }
