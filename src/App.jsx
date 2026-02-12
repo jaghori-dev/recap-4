@@ -3,14 +3,20 @@ import ColorCard from "./Components/ColorCard";
 import ColorForm from "./Components/ColorForm";
 import { uid } from "uid";
 import { useLocalStorage } from "@uidotdev/usehooks";
+import { useState } from "react";
 
 function App() {
   const [data, setData] = useLocalStorage("localData", initialColors);
-  function onSubmitColor(input) {
-    setData([{ id: uid(2), isFavorite: false, ...input }, ...data]);
+  const [isFormVisible, setIsFormVisible] = useState(false);
+  
+  function addFormVisible() {
+    setIsFormVisible((prev) => !prev);
   }
-  const favColors = data.filter((card)=> card.isFavorite ).length
-  console.log(favColors)
+  function onSubmitColor(input) {
+    setData([{ id: uid(6), isFavorite: false, ...input }, ...data]);
+    setIsFormVisible((prev) => !prev);
+  }
+  const favColors = data.filter(({ isFavorite }) => isFavorite).length;
 
   function handleEdit(id, updatedData) {
     // console.log(id, updatedData);
@@ -28,11 +34,22 @@ function App() {
       ),
     );
   }
+  if (data.length === 0) { return <h1>there is no color card lets add some</h1> }
   return (
     <>
       <div className="h-120 flex flex-col items-center bg-slate-00">
+        
         <h1 className="text-4xl text-black font-bold m-4">Theme Creator</h1>
-        <ColorForm onSubmitColor={onSubmitColor} />
+        {isFormVisible ? (
+          <ColorForm onSubmitColor={onSubmitColor} />
+        ) : (
+          <span
+            className="w-70 h-12 bg-slate-600 text-lg flex justify-center  items-center rounded-md cursor-pointer"
+            onClick={addFormVisible}
+          >
+            Add color card
+          </span>
+        )}
       </div>
       <ul className="flex gap-5 justify-center flex-wrap ">
         {data.map((color) => {
@@ -52,7 +69,10 @@ function App() {
           );
         })}
       </ul>
-      <h2 className="text-4xl text-black font-bold m-4"> your favorite colors {favColors}</h2>
+      <h2 className="text-4xl text-black font-bold m-4">
+        {" "}
+        your favorite colors {favColors}
+      </h2>
     </>
   );
 }
