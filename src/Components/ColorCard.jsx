@@ -10,6 +10,8 @@ export default function Color({
   handleDelete,
   handleEdit,
   id,
+  toggleFavorite,
+  isFavorite
 }) {
   const [isConfirmVisible, setIsConfirmVisible] = useState(false);
   const [isEditVisible, setIsEditVisible] = useState(false);
@@ -31,7 +33,7 @@ export default function Color({
   return (
     <div
       style={{ "--bg": color, "--text": contrast }}
-      className="w-90 min-h-90 bg-[var(--bg)] text-[var(--text)] flex flex-col items-center p-3 rounded-xl"
+      className="w-90 min-h-90 bg-(--bg) text-(--text) flex flex-col items-center p-3 rounded-xl"
     >
       <div className="flex">
         <h2 className="text-2xl p-2 rounded-xl">{color}</h2>
@@ -68,6 +70,7 @@ export default function Color({
         )}
         {isConfirmVisible && <Button onClick={handleDelete}>Confirm</Button>}
       </div>
+      <Button onClick={toggleFavorite}>{isFavorite? 'unbookmark' : 'bookmark'}</Button>
     </div>
   );
 }
